@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T-Guardian Final Presentation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Urbanist:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #050505;
+            --card-bg: #121212;
+            --accent-blue: #3b82f6;
+            --accent-green: #10b981;
+            --accent-red: #ef4444;
+            --text-main: #ffffff;
+            --text-sub: #94a3b8;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Noto Sans KR', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* 슬라이드 레이아웃 */
+        .slide {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            border-bottom: 2px solid #222;
+            position: relative;
+            scroll-snap-align: start; /* 스크롤 스냅 */
+        }
+
+        .container {
+            width: 1400px;
+            height: 800px;
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 60px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #333;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 배경 데코레이션 */
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -100px; right: -100px;
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(59,130,246,0.1) 0%, rgba(0,0,0,0) 70%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* 타이포그래피 */
+        h1 { font-size: 80px; font-weight: 900; line-height: 1.1; margin-bottom: 20px; }
+        h2 { font-size: 50px; font-weight: 700; margin-bottom: 40px; border-bottom: 2px solid #333; padding-bottom: 20px; color: var(--accent-blue); }
+        h3 { font-size: 32px; font-weight: 600; margin-bottom: 15px; color: #fff; }
+        p, li { font-size: 22px; line-height: 1.6; color: var(--text-sub); margin-bottom: 10px; }
+        
+        .highlight { color: var(--accent-green); font-weight: 700; }
+        .warning { color: var(--accent-red); font-weight: 700; }
+        .keyword { color: var(--accent-blue); font-weight: 700; }
+
+        /* 레이아웃 유틸리티 */
+        .row { display: flex; gap: 40px; height: 100%; align-items: center; }
+        .col { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+        .col-2 { flex: 2; }
+        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 30px; width: 100%; height: 100%; }
+        
+        /* 컴포넌트 */
+        .img-box {
+            width: 100%;
+            height: 400px;
+            background: #000;
+            border-radius: 15px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #444;
+            position: relative;
+        }
+        
+        .img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+        .img-box:hover img { opacity: 1; }
+
+        .caption {
+            position: absolute; bottom: 0; left: 0; width: 100%;
+            background: rgba(0,0,0,0.7); padding: 10px; text-align: center;
+            color: #fff; font-size: 16px;
+        }
+
+        .card {
+            background: #1a1a1a;
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #333;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .code-block {
+            background: #000;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: monospace;
+            color: #4ade80;
+            border-left: 5px solid var(--accent-blue);
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        /* 챕터 간지 스타일 */
+        .chapter-slide {
+            text-align: center;
+            background: linear-gradient(135deg, #111 0%, #050505 100%);
+        }
+        .chapter-slide h2 { border: none; font-size: 80px; color: #fff; }
+        .chapter-slide p { font-size: 30px; color: var(--accent-blue); }
+
+        /* 네비게이션 힌트 */
+        .nav-hint {
+            position: fixed;
+            bottom: 20px;
+            right: 30px;
+            color: #555;
+            font-size: 14px;
+            z-index: 100;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="nav-hint">Use Arrow Keys (↓ / →) to Navigate</div>
+
+    <!-- #1 표지 -->
+    <div class="slide">
+        <div class="container" style="justify-content: center; align-items: center; text-align: center;">
+            <p style="color: var(--accent-blue); font-weight: 700; letter-spacing: 5px; margin-bottom: 20px;">AI-POWERED IP PROTECTION</p>
+            <h1>T-Guardian</h1>
+            <h3 style="color: #888; margin-top: 20px;">AI 기반 상표 침해 모니터링 시스템</h3>
+            <div style="margin-top: 80px; display: flex; gap: 50px;">
+                <div style="text-align: left;">
+                    <p style="font-size: 16px; margin: 0; color: #555;">발표자</p>
+                    <p style="font-size: 24px; color: #fff; margin: 0;">Changhoon</p>
+                </div>
+                <div style="text-align: left;">
+                    <p style="font-size: 16px; margin: 0; color: #555;">프로젝트</p>
+                    <p style="font-size: 24px; color: #fff; margin: 0;">2025 AI-Lab</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- #2 인트로 -->
+    <div class="slide">
+        <div class="container">
+            <h2>Our Mission</h2>
+            <div class="row">
+                <div class="col">
+                    <h3 style="font-size: 40px; margin-bottom: 30px;">"등록은 끝이 아닙니다.<br>전쟁의 시작입니다."</h3>
+                    <p>변리사는 상표를 <span class="keyword">등록</span>시켜 주지만,</p>
+                    <p>시장의 도둑들로부터 브랜드를 <span class="warning">지켜주지는 못합니다.</span></p>
+                    <br>
+                    <div class="code-block" style="color: #fff; border-color: var(--accent-green);">
+                        T-Guardian은 24시간 잠들지 않는<br>
+                        AI 슈퍼 보조원(Super Paralegal)입니다.
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="img-box">
+                        <img src="https://image.pollinations.ai/prompt/cyberpunk%20digital%20shield%20protecting%20a%20glowing%20brand%20logo%20from%20red%20glitch%20hackers?nologo=true" alt="Shield">
+                        <div class="caption">등록(Registration)과 보호(Protection)의 간극</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- #3 챕터 1 -->
+    <div class="slide chapter-slide">
+        <div class="container" style="justify-content: center; border: none; box-shadow: none;">
+            <p>PART 1</p>
+            <h2>상표법 기초</h2>
+            <p style="font-size: 24px; color: #666; margin-top: 20px;">개발자가 알아야 할 최소한의 법리</p>
+        </div>
+    </div>
+
+    <!-- #4 등록 vs 침해 -->
+    <div class="slide">
+        <div class="container">
+            <h2>1. 권리와 감시의 분리</h2>
+            <div class="grid-3">
+                <div class="card">
+                    <i class="fa-solid fa-file-contract" style="font-size: 50px; color: var(--accent-blue); margin-bottom: 20px;"></i>
+                    <h3>등록 (특허청)</h3>
+                    <p>국가가 "독점권"을 부여합니다.</p>
+                    <p class="highlight">심사관의 영역</p>
+                </div>
+                <div class="card" style="border-color: var(--accent-red);">
+                    <i class="fa-solid fa-magnifying-glass-location" style="font-size: 50px; color: var(--accent-red); margin-bottom: 20px;"></i>
+                    <h3>감시 (시장)</h3>
+                    <p>도둑을 잡는 건 <span class="warning">주인의 몫</span>입니다.</p>
+                    <p>국가는 감시해주지 않습니다.</p>
+                </div>
+                <div class="card">
+                    <i class="fa-solid fa-robot" style="font-size: 50px; color: #fff; margin-bottom: 20px;"></i>
+                    <h3>AI의 역할</h3>
+                    <p>변리사를 대신해 전국 시장을 감시하는 눈이 됩니다.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- #5 유사판단 기준 -->
+    <div class="slide">
+        <div class="container">
+            <h2>2. 침해 판단 기준: 오인·혼동</h2>
+            <div class="row">
+                <div class="col">
+                    <p style="font-size: 28px;">"소비자가 헷갈리면 침해다"</p>
+                    <ul style="margin-top: 30px; list-style: none;">
+                        <li style="margin-bottom: 20px;"><strong class="keyword">1. 외관 (Visual):</strong><br>생김새, 디자인, 로고 형상</li>
+                        <li style="margin-bottom: 20px;"><strong class="keyword">2. 호칭 (Sound):</strong><br>부르는 소리, 발음</li>
+                        <li style="margin-bottom: 20px;"><strong class="keyword">3. 관념 (Meaning):</strong><br>뜻, 의미, 번역</li>
+                    </ul>
+                </div>
+                <div class="col">
+                    <div class="img-box">
+                        <img src="https://image.pollinations.ai/prompt/human%20brain%20analyzing%20visual%20sound%20and%20meaning%20icons%20hologram?nologo=true" alt="3요소">
+                        <div class="caption">상표 유사판단 3요소</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- #6 외관 사례 -->
+    <div class="slide">
+        <div class="container">
+            <h2>사례 1: 외관(Visual) 침해</h2>
+            <div class="row">
+                <div class="col">
+                    <div class="img-box" style="height: 500px;">
+                        <img src="https://image.pollinations.ai/prompt/comparison%20of%20a%20famous%20green%20coffee%20logo%20mermaid%20and%20a%20fake%20copycat%20logo%20with%20similar%20layout%20but%20different%20face?nologo=true" alt="Starbucks Copycat">
+                        <div class="caption">진품(좌) vs 유사상표(우)</div>
+                    </div>
+                </div>
+                <div class="col">
+                    <h3>글자가 달라도 침해입니다.</h3>
+                    <p>오른쪽 로고의 글씨가 다르더라도,</p>
+                    <br>
+                    <p>✅ <strong>초록색 원형 테두리</strong></p>
+                    <p>✅ <strong>중앙의 배치 구도</strong></p>
+                    <br>
+                    <p>이것만으로 소비자는 "같은 브랜드인가?"라고 착각합니다.</p>
+                    <p class="warning">→ OCR(글자 인식)만으로는 잡을 수 없습니다.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- #7 호칭 사례 -->
+    <div class="slide">
+        <div class="container">
+            <h2>사례 2: 호칭(Sound) 침해</h2>
+            <div class="grid-3">
+                <div class="card">
+                    <h3>Case A</h3>
+                    <p style="font-size: 30px; color: #fff;">PUMA vs PUMMYS</p>
+                    <hr style="margin: 20px 0; border-color: #333;">
+                    <p>앞부분 <strong>'Pu-'</strong> 발음이 강하게 유사하여 청각적 혼동 유발.</p>
+                    <p class="warning">→ 침해 (유사)</p>
+                </div>
+                <div class="card">
+                    <h3>Case B</h3>
+                    <p style="font-size: 30px; color: #fff;">LION vs RYAN</p>
+                    <hr style="margin: 20px 0; border-color: #333;">
+                    <p>발음은 비슷할 수 있으나,</p>
+                    <p>'사자' vs '사람 이름'으로 관념이 다름.</p>
+                    <p class="highlight">→ 비유사 (안전)</p>
+                </div>
+                <div class="card">
+                    <div class="img-box" style="height: 200px; margin-top: auto;">
+                        <img src="https://image.pollinations.ai/prompt/sound%20wave%20comparison%20chart%20digital?nologo=true" alt="Sound Wave">
+                    </div>
+                    <p style="margin-top: 15px;">단순 텍스트 매칭이 아닌, <strong>발음 기호 변환(G2P)</strong>이 필요합니다.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- #8 관념 사례 -->
+    <div class="slide">
+        <div class="container">
+            <h2>사례 3: 관념(Meaning) 침해</h2>
+            <div class="row">
+                <div class="col">
+                    <h3>번역하면 같은 뜻?</h3>
+                    <div class="code-block">
+                        <span style="color: #fff;">Case:</span><br>
+                        "CROWN" (영어) vs "왕관" (한글)<br>
+                        <br>
+                        <span style="color: #fff;">Result:</span><br>
+                        외관/호칭은 전혀 다르지만,<br>
+                        <span class="warning">관념(의미)이 동일하여 침해입니다.</span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="img-box">
+                        <img src="https://image.pollinations.ai/prompt/a%20king%20crown%20and%20text%20crown%20conceptual%20art?nologo=true" alt="Crown">
+                        <div class="caption">Crown = 왕관</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- #9 지정상품 -->
+    <div class="slide">
+        <div class="container">
+            <h2>3. 지정상품 (Category)의 중요성</h2>
+            <div class="row">
+                <div class="col">
+                    <div class="img-box">
+                        <img src="https://image.pollinations.ai/prompt/apple%20logo%20on%20laptop%20vs%20fresh%20red%20apple%20fruit%20comparison?nologo=true" alt="Apple vs Apple">
+                        <div class="caption">애플(컴퓨터) vs 애플(과일)</div>
+                    </div>
+                </div>
+                <div class="col">
+                    <h3>이름이 같다고 다 내 거 아님</h3>
+                    <p>상표권은 등록한 <strong>'카테고리'</strong> 안에서만 유효합니다.</p>
+                    <div class="code-block" style="font-size: 18px;">
+                        IF (Mark="Apple") AND (Goods="Laptop")<br>
+                        >> <span class="warning">INFIRNGEMENT (침해)</span><br><br>
+                        IF (Mark="Apple") AND (Goods="Fruit")<br>
+                        >> <span class="highlight">SAFE (비유사)</span>
+                    </div>
+                    <p style="margin-top: 15px;">※ T-Guardian은 니스(Nice) 분류 코드를 자동 매핑합니다.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- #10 챕터 2 -->
+    <div class="slide chapter-slide">
+        <div class="container" style="justify-content: center; border: none; box-shadow: none;">
+            <p>PART 2</p>
+            <h2>문제 정의 (The Problem)</h2>
+            <p style="font-size: 24px; color: #666; margin-top: 20px;">왜 지금까지 자동화가 안 되었나?</p>
+        </div>
+    </div>
+
+    <!-- #11 현실의 문제 -->
+    <div class="slide">
+        <div class="container">
+            <h2>사각지대의 발생</h2>
+            <div class="grid-3">
+                <div class="card">
+                    <h3>1. 오프라인 (지도)</h3>
+                    <div class="img-box" style="height: 200px; margin-bottom: 20px;">
+                        <img src="https://image.pollinations.ai/prompt/complex%20korean%20street%20signs%20neon%20night?nologo=true" alt="Street">
+                    </div>
+                    <p>매일 새로 생기는 식당, 카페 간판.</p>
+                    <p>변리사가 로드뷰를 매일 볼 수 없음.</p>
+                </div>
+                <div class="card">
+                    <h3>2. 온라인 (SNS)</h3>
+                    <div class="img-box" style="height: 200px; margin-bottom: 20px;">
+                        <img src="https://image.pollinations.ai/prompt/instagram%20feed%20scrolling%20fake%20products?nologo=true" alt="SNS">
+                    </div>
+                    <p>인스타그램, 쿠팡의 수백만 이미지.</p>
+                    <p>해시태그 변형 시 검색 불가.</p>
+                </div>
+                <div class="card">
+                    <h3>3. 기존 툴의 한계</h3>
+                    <div class="img-box" style="height: 200px; margin-bottom: 20px;">
+                        <img src="https://image.pollinations.ai/prompt/error%20screen%20computer%20monitor%20glitch?nologo=true" alt="Error">
+                    </div>
+                    <p>해외 솔루션(RedPoints)은 한국어/한국지도 미지원.</p>
+                    <p>단순 텍스트 매칭에 불과함.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- #12 챕터 3 -->
+    <div class="slide chapter-slide">
+        <div class="container" style="justify-content: center; border: none; box-shadow: none;">
+            <p>PART 3</p>
+            <h2>솔루션: T-Guardian</h2>
+            <p style="font-size: 24px; color: #666; margin-top: 20px;">기술적 해결 방안</p>
+        </div>
+    </div>
+
+    <!-- #13 시스템 개요 -->
+    <div class="slide">
+        <div class="container">
+            <h2>AI 관제 시스템 (Dashboard)</h2>
+            <div class="row">
+                <div class="col">
+                    <ul style="list-style: none;">
+                        <li><h3 style="color: var(--accent-blue);">1. Collect (수집)</h3>공공데이터 + 지도/SNS 크롤링</li>
+                        <br>
+                        <li><h3 style="color: var(--accent-blue);">2. Analyze (분석)</h3>3-Track (외관/호칭/관념) AI 분석</li>
+                        <br>
+                        <li><h3 style="color: var(--accent-blue);">3. Report (보고)</h3>침해 의심 건만 변리사에게 전달</li>
+                    </ul>
+                </div>
+                <div class="col-2">
+                    <div class="img-box" style="height: 600px;">
+                        <img src="https://image.pollinations.ai/prompt/futuristic%20dashboard%20ui%20monitoring%20trademark%20map%20and%20graphs%20dark%20mode?nologo=true" alt="Dashboard">
+                        <div class="caption">변리사 전용 모니터링 대시보드 (Mockup)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- #14 아키텍처 -->
+    <div class="slide">
+        <div class="container">
+            <h2>시스템 아키텍처 (Pipeline)</h2>
+            <div class="img-box" style="height: 550px; background: #fff;">
+                <img src="https://image.pollinations.ai/prompt/software%20architecture%20diagram%20data%20pipeline%20crawling%20to%20ai%20model%20to%20database%20clean%20lines%20white%20background?nologo=true" alt="Architecture" style="object-fit: contain; filter: invert(1);">
+            </div>
+            <p style="text-align: center; margin-top: 20px;">수집(Selenium) → 전처리(Preprocessing) → 추론(AI Inference) → 결과(RAG Report)</p>
+        </div>
+    </div>
+
+    <!-- #15 데이터 전략 -->
+    <div class="slide">
+        <div class="container">
+            <h2>데이터 수집: Hybrid Strategy</h2>
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <h3><i class="fa-solid fa-database"></i> Base Data (안정성)</h3>
+                        <p><strong>공공데이터 & 카드사 API</strong></p>
+                        <p>전국 운영 매장 리스트 (폐업 제외)</p>
+                        <p class="highlight">→ 100% 정확한 모수 확보</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <h3><i class="fa-solid fa-spider"></i> Target Data (심층)</h3>
+                        <p><strong>네이버 지도 & 인스타그램</strong></p>
+                        <p>Base Data 중 의심되는 곳만 콕 집어서 크롤링</p>
+                        <p class="highlight">→ IP 차단 회피 & 이미지 확보</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- #16 챕터 4 -->
+    <div class="slide chapter-slide">
+        <div class="container" style="justify-content: center; border: none; box-shadow: none;">
+            <p>PART 4</p>
+            <h2>AI 엔진 (Deep Dive)</h2>
+            <p style="font-size: 24px; color: #666; margin-top: 20px;">3-Track Independent Ensemble</p>
+        </div>
+    </div>
+
+    <!-- #17 3-Track 모델 -->
+    <div class="slide">
+        <div class="container">
+            <h2>3-Track 앙상블 모델</h2>
+            <p style="margin-bottom: 30px;">법적 판단 기준을 각각 독립적인 AI 모델로 구현했습니다.</p>
+            <div class="grid-3">
+                <div class="card" style="align-items: center; text-align: center; border-color: #60a5fa;">
+                    <div style="font-size: 50px; margin-bottom: 20px;">👁️</div>
+                    <h3>Track 1. 외관</h3>
+                    <p><strong>YOLOv8 + Siamese</strong></p>
+                    <p>이미지 유사도 분석</p>
+                    <p class="highlight">가장 중요 (Main)</p>
+                </div>
+                <div class="card" style="align-items: center; text-align: center; border-color: #a78bfa;">
+                    <div style="font-size: 50px; margin-bottom: 20px;">👂</div>
+                    <h3>Track 2. 호칭</h3>
+                    <p><strong>G2P + Levenshtein</strong></p>
+                    <p>발음 유사도 분석</p>
+                </div>
+                <div class="card" style="align-items: center; text-align: center; border-color: #f472b6;">
+                    <div style="font-size: 50px; margin-bottom: 20px;">🧠</div>
+                    <h3>Track 3. 관념</h3>
+                    <p><strong>LLM Embedding</strong></p>
+                    <p>의미적 거리 분석</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- #18 Vision 모델 -->
+    <div class="slide">
+        <div class="container">
+            <h2>Track 1: Vision (YOLOv8)</h2>
+            <div class="row">
+                <div class="col">
+                    <h3>로고만 찾아냅니다.</h3>
+                    <p>거리 풍경 사진에서 간판의 <strong>'상표 부분'</strong>만 정확히 떼어냅니다(Crop).</p>
+                    <br>
+                    <h3>비교합니다. (Siamese Net)</h3>
+                    <p>등록 상표 이미지와 1:1로 비교하여 유사도 점수(0~100%)를 계산합니다.</p>
+                    <div class="code-block">Similarity: 87.5%</div>
+                </div>
+                <div class="col">
+                    <div class="img-box" style="height: 500px;">
+                        <img src="https://image.pollinations.ai/prompt/yolo%20object%20detection%20bounding%20box%20on%20store%20sign%20street%20view?nologo=true" alt="YOLO">
+                        <div class="caption">객체 탐지 및 비교</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- #19 학습 데이터 전략 -->
+    <div class="slide">
+        <div class="container">
+            <h2>Vision 학습 데이터 전략</h2>
+            <div class="row">
+                <div class="col">
+                    <h3>"진짜 침해 이미지는 구하기 어렵다"</h3>
+                    <p>특허청 데이터는 깨끗한 원본뿐입니다. 우리는 '현장 데이터'가 필요합니다.</p>
+                    <br>
+                    <h3 class="highlight">해결책: AI Hub + 합성(Synthetic)</h3>
+                    <p>1. <strong>AI Hub:</strong> '유사 상표 이미지' 데이터셋 활용</p>
+                    <p>2. <strong>합성:</strong> 깨끗한 로고에 노이즈/기울기/조명을 적용해 가짜 현장 데이터 생성</p>
+                </div>
+                <div class="col">
+                    <div class="img-box">
+                        <img src="https://image.pollinations.ai/prompt/multiple%20augmented%20images%20of%20a%20logo%20rotated%20blurred%20noisy?nologo=true" alt="Augmentation">
+                        <div class="caption">Data Augmentation (데이터 증강)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- #20 호칭/관념 모델 -->
+    <div class="slide">
+        <div class="container">
+            <h2>Track 2 & 3: 언어적 판단</h2>
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <h3>호칭 (G2P 알고리즘)</h3>
+                        <p>한국어 발음 변환 규칙 적용</p>
+                        <div class="code-block">
+                            "신라" → [실라]<br>
+                            "종로" → [종노]<br>
+                            <br>
+                            소리나는 대로 변환 후 비교
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <h3>관념 (Embedding)</h3>
+                        <p>단어를 벡터 공간에 매핑</p>
+                        <div class="code-block">
+                            Vec("Lion") ≈ Vec("사자")<br>
+                            Distance = 0.02 (매우 가까움)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- #21 RAG 리포트 -->
+    <div class="slide">
+        <div class="container">
+            <h2>Final Output: RAG Legal Report</h2>
+            <div class="row">
+                <div class="col">
+                    <h3>"AI는 판사가 아닙니다"</h3>
+                    <p>AI가 마음대로 침해 여부를 결정하지 않습니다.</p>
+                    <p>오직 <strong>데이터와 판례</strong>를 근거로 초안을 작성합니다.</p>
+                    <br>
+                    <ul class="highlight" style="list-style: none;">
+                        <li>✅ 수치화된 유사도 점수 제시</li>
+                        <li>✅ 관련 대법원 판례 자동 인용</li>
+                    </ul>
+                </div>
+                <div class="col">
+                    <div class="img-box" style="background: #fff;">
+                        <img src="https://image.pollinations.ai/prompt/legal%20document%20report%20korean%20text%20graphs%20clean?nologo=true" alt="Report" style="filter: invert(1);">
+                        <div class="caption">자동 생성된 침해 분석 보고서</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- #22 챕터 5 -->
+    <div class="slide chapter-slide">
+        <div class="container" style="justify-content: center; border: none; box-shadow: none;">
+            <p>PART 5</p>
+            <h2>Tech Stack & Roadmap</h2>
+            <p style="font-size: 24px; color: #666; margin-top: 20px;">구현 계획</p>
+        </div>
+    </div>
+
+    <!-- #23 기술 스택 -->
+    <div class="slide">
+        <div class="container">
+            <h2>Technology Stack</h2>
+            <div class="grid-3">
+                <div class="card">
+                    <h3>Backend & AI</h3>
+                    <ul style="margin-top: 20px;">
+                        <li><strong>Python, FastAPI</strong></li>
+                        <li><strong>PyTorch, YOLOv8</strong></li>
+                        <li><strong>LangChain, OpenAI</strong></li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Data Engineering</h3>
+                    <ul style="margin-top: 20px;">
+                        <li><strong>Selenium / Playwright</strong></li>
+                        <li><strong>PostgreSQL (Meta)</strong></li>
+                        <li><strong>Pinecone (Vector DB)</strong></li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>DevOps & Frontend</h3>
+                    <ul style="margin-top: 20px;">
+                        <li><strong>Docker, AWS EC2</strong></li>
+                        <li><strong>React.js</strong></li>
+                        <li><strong>Tailwind CSS</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- #24 전략 수정 (Pivot) -->
+    <div class="slide">
+        <div class="container">
+            <h2>전략 수정: Vision First</h2>
+            <div class="row">
+                <div class="col">
+                    <h3 class="warning">기존 계획의 문제</h3>
+                    <p>모델 3개를 다 만들고 나면,</p>
+                    <p>정작 테스트할 <strong>데이터가 없어서</strong> 검증이 불가능함.</p>
+                </div>
+                <div class="col" style="text-align: center;">
+                    <i class="fa-solid fa-arrow-right" style="font-size: 40px; color: #555;"></i>
+                </div>
+                <div class="col">
+                    <h3 class="highlight">수정된 계획 (MVP)</h3>
+                    <p><strong>크롤러 + Vision 모델</strong>을 최우선 개발.</p>
+                    <p>일단 수집해서 눈으로 보여주는 것에 집중.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- #25 로드맵 -->
+    <div class="slide">
+        <div class="container">
+            <h2>2주 MVP 개발 계획</h2>
+            <div class="grid-3">
+                <div class="card" style="border-top: 5px solid var(--accent-blue);">
+                    <h3>Phase 1 (Day 1-3)</h3>
+                    <p class="highlight">데이터 파이프라인</p>
+                    <p>공공데이터 확보</p>
+                    <p>네이버 지도 크롤러 프로토타입</p>
+                </div>
+                <div class="card" style="border-top: 5px solid var(--accent-blue);">
+                    <h3>Phase 2 (Day 4-7)</h3>
+                    <p class="highlight">Vision 모델</p>
+                    <p>AI Hub 데이터셋 다운로드</p>
+                    <p>YOLOv8 학습 (로고 탐지)</p>
+                </div>
+                <div class="card" style="border-top: 5px solid var(--accent-blue);">
+                    <h3>Phase 3 (Day 8-10)</h3>
+                    <p class="highlight">통합 & 검증</p>
+                    <p>웹 대시보드 연동</p>
+                    <p>실제 침해 사례 탐지 테스트</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- #26 결론 -->
+    <div class="slide chapter-slide">
+        <div class="container" style="justify-content: center; border: none; box-shadow: none;">
+            <h2>Conclusion</h2>
+            <p style="font-size: 36px; color: #fff; margin-top: 30px;">
+                T-Guardian은<br>
+                대한민국 상표 보호의<br>
+                <span class="highlight">새로운 표준(New Standard)</span>이 될 것입니다.
+            </p>
+        </div>
+    </div>
+
+    <!-- #27 Q&A -->
+    <div class="slide">
+        <div class="container" style="justify-content: center; align-items: center;">
+            <h1 style="font-size: 100px;">Q & A</h1>
+            <p style="font-size: 30px; margin-top: 30px;">감사합니다.</p>
+        </div>
+    </div>
+
+    <script>
+        // 키보드 네비게이션 스크립트
+        document.addEventListener('keydown', (e) => {
+            const height = window.innerHeight;
+            if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                window.scrollBy({ top: height, behavior: 'smooth' });
+            } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+                e.preventDefault();
+                window.scrollBy({ top: -height, behavior: 'smooth' });
+            }
+        });
+    </script>
+</body>
+</html>

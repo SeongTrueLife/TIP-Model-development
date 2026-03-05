@@ -1,0 +1,22 @@
+# Phonetic Similarity Model - Requirements
+# Install: pip install -r requirements.txt
+
+# Data Processing
+pandas>=2.0.0
+openpyxl>=3.1.0
+
+# Similarity Algorithms
+rapidfuzz>=3.0.0
+jellyfish>=1.0.0
+
+# Korean G2P (Grapheme to Phoneme)
+g2pk>=0.9.4
+jamo>=0.4.1
+
+# Azure OpenAI API
+openai>=1.0.0
+python-dotenv>=1.0.0
+
+# Korean NLP (g2pk dependency)
+konlpy>=0.6.0
+python-mecab-ko>=1.0.0

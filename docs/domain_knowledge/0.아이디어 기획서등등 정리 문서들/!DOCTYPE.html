@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T-Guardian Project Proposal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Noto Sans KR', sans-serif; background-color: #0f172a; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; overflow: hidden; }
+        .slide { width: 1280px; height: 720px; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); position: relative; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); color: white; }
+        .glass-panel { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; }
+        .accent-text { color: #38bdf8; }
+        .highlight-bg { background: rgba(56, 189, 248, 0.15); border-left: 4px solid #38bdf8; }
+        /* Code block styling specifically for layout stability */
+        pre { margin: 0; white-space: pre-wrap; font-family: 'Courier New', Courier, monospace; }
+        .code-snippet { font-size: 0.7rem; line-height: 1.4; color: #a5b4fc; background-color: #1e1e2e; padding: 10px; border-radius: 6px; border: 1px solid #312e81; }
+    </style>
+</head>
+<body>
+
+    <div class="slide p-8 flex flex-col justify-between">
+        <!-- Header -->
+        <div class="flex justify-between items-end border-b border-gray-700 pb-4 mb-2">
+            <div>
+                <h1 class="text-4xl font-black tracking-tight text-white mb-1">
+                    <span class="text-blue-400">T-Guardian</span> 프로젝트 제안
+                </h1>
+                <p class="text-lg text-gray-400 font-light">AI 기반 상표 침해 자동 모니터링 시스템 (MVP Sprint)</p>
+            </div>
+            <div class="text-right">
+                <div class="text-sm text-gray-400">Target: 2-Week MVP</div>
+                <div class="text-xs text-gray-500">Based on Doc v3.0 & Workflow v2.0</div>
+            </div>
+        </div>
+
+        <!-- Main Content Grid -->
+        <div class="grid grid-cols-12 gap-6 h-full">
+            
+            <!-- Left Column: Problem & Solution (4 cols) -->
+            <div class="col-span-4 flex flex-col gap-4">
+                <!-- Problem -->
+                <div class="glass-panel p-5 flex-1">
+                    <h3 class="text-xl font-bold mb-3 text-red-400"><i class="fas fa-exclamation-triangle mr-2"></i>Pain Point</h3>
+                    <ul class="space-y-3 text-sm text-gray-300">
+                        <li class="flex items-start"><i class="fas fa-times text-red-500 mt-1 mr-2"></i><span><b>등록 후 관리의 공백:</b> 특허청은 등록만 해줌. 침해 감시는 전적으로 고객 책임.</span></li>
+                        <li class="flex items-start"><i class="fas fa-times text-red-500 mt-1 mr-2"></i><span><b>오프라인 사각지대:</b> 지도, 간판, 로고 침해는 텍스트 검색으로 적발 불가능.</span></li>
+                        <li class="flex items-start"><i class="fas fa-times text-red-500 mt-1 mr-2"></i><span><b>인력의 한계:</b> 변리사가 매일 네이버 지도를 검색할 수 없음.</span></li>
+                    </ul>
+                </div>
+
+                <!-- Solution -->
+                <div class="glass-panel p-5 flex-1 highlight-bg">
+                    <h3 class="text-xl font-bold mb-3 text-blue-400"><i class="fas fa-robot mr-2"></i>Our Solution</h3>
+                    <p class="text-sm text-gray-200 mb-3 font-medium">
+                        "크롤러가 긁어오고, Vision AI가 판단한다."
+                    </p>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li class="flex items-center"><i class="fas fa-check text-blue-400 mr-2"></i>24/7 자동 감시 (네이버 지도/쿠팡)</li>
+                        <li class="flex items-center"><i class="fas fa-check text-blue-400 mr-2"></i>시각적 유사도(Visual Similarity) 분석</li>
+                        <li class="flex items-center"><i class="fas fa-check text-blue-400 mr-2"></i>변리사 의사결정 지원 (DSS)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Center Column: Architecture & Tech (4 cols) -->
+            <div class="col-span-4 flex flex-col gap-4">
+                <div class="glass-panel p-5 h-full relative">
+                    <h3 class="text-xl font-bold mb-4 text-white"><i class="fas fa-project-diagram mr-2"></i>System Architecture</h3>
+                    
+                    <!-- Flow Chart Visualization -->
+                    <div class="flex flex-col items-center space-y-2 text-sm">
+                        <!-- Step 1 -->
+                        <div class="w-full bg-gray-800 p-3 rounded border border-gray-600 text-center">
+                            <div class="font-bold text-green-400 mb-1">1. Data Collection</div>
+                            <div class="text-xs text-gray-400">Selenium Crawler (Naver Map)</div>
+                        </div>
+                        <i class="fas fa-arrow-down text-gray-500"></i>
+                        
+                        <!-- Step 2 -->
+                        <div class="w-full bg-gray-800 p-3 rounded border border-gray-600 text-center">
+                            <div class="font-bold text-yellow-400 mb-1">2. Preprocessing</div>
+                            <div class="text-xs text-gray-400">Nice Classification Mapping (업종 필터링)</div>
+                        </div>
+                        <i class="fas fa-arrow-down text-gray-500"></i>
+
+                        <!-- Step 3 -->
+                        <div class="w-full bg-blue-900 p-3 rounded border border-blue-500 text-center shadow-lg shadow-blue-900/50">
+                            <div class="font-bold text-white mb-1"><i class="fas fa-eye mr-1"></i>3. Vision AI (Core)</div>
+                            <div class="text-xs text-blue-200">YOLOv8 (Detection) + Siamese (Similarity)</div>
+                        </div>
+                        <i class="fas fa-arrow-down text-gray-500"></i>
+
+                        <!-- Step 4 -->
+                        <div class="w-full bg-gray-800 p-3 rounded border border-gray-600 text-center">
+                            <div class="font-bold text-purple-400 mb-1">4. Dashboard</div>
+                            <div class="text-xs text-gray-400">React UI (변리사 판정 및 피드백)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Execution Plan (4 cols) -->
+            <div class="col-span-4 flex flex-col gap-4">
+                <!-- Data Strategy -->
+                <div class="glass-panel p-5">
+                    <h3 class="text-lg font-bold mb-2 text-white"><i class="fas fa-database mr-2"></i>Data Strategy</h3>
+                    <div class="text-xs text-gray-300 mb-2">
+                        맨땅에 헤딩하지 않습니다. <b>AI Hub</b> 데이터를 활용합니다.
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 text-xs">
+                        <div class="bg-gray-800 p-2 rounded text-center">
+                            <div class="font-bold text-blue-300">AI Hub</div>
+                            <div class="text-gray-500">유사 상표 이미지<br>(27만 건)</div>
+                        </div>
+                        <div class="bg-gray-800 p-2 rounded text-center">
+                            <div class="font-bold text-blue-300">LogoDet-3K</div>
+                            <div class="text-gray-500">기초 객체 탐지<br>(15만 장)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2-Week Roadmap -->
+                <div class="glass-panel p-5 flex-1">
+                    <h3 class="text-lg font-bold mb-3 text-white"><i class="fas fa-calendar-check mr-2"></i>2-Week MVP Plan</h3>
+                    <div class="space-y-4 relative pl-4 border-l-2 border-gray-700">
+                        <!-- Week 1 -->
+                        <div class="relative">
+                            <div class="absolute -left-[21px] bg-blue-500 w-3 h-3 rounded-full mt-1"></div>
+                            <h4 class="text-sm font-bold text-blue-400">Week 1: Crawler & Data</h4>
+                            <p class="text-xs text-gray-400 mt-1">
+                                - AI Hub 데이터 확보 & 정제<br>
+                                - Naver 지도 Selenium 크롤러 구현<br>
+                                - 실제 간판 이미지 1,000장 확보
+                            </p>
+                        </div>
+                        <!-- Week 2 -->
+                        <div class="relative">
+                            <div class="absolute -left-[21px] bg-purple-500 w-3 h-3 rounded-full mt-1"></div>
+                            <h4 class="text-sm font-bold text-purple-400">Week 2: Vision AI & UI</h4>
+                            <p class="text-xs text-gray-400 mt-1">
+                                - YOLOv8 학습 (로고 탐지)<br>
+                                - React 대시보드 연동<br>
+                                - <b>변리사 시연 가능한 데모 완성</b>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="mt-4 pt-4 border-t border-gray-700 flex justify-between items-center">
+            <div class="flex space-x-6 text-sm text-gray-400">
+                <span><i class="fab fa-python mr-1"></i> Python / FastAPI</span>
+                <span><i class="fab fa-react mr-1"></i> React</span>
+                <span><i class="fas fa-robot mr-1"></i> YOLOv8 / PyTorch</span>
+                <span><i class="fas fa-spider mr-1"></i> Selenium</span>
+            </div>
+            <div class="text-right">
+                <span class="bg-blue-600 text-white px-4 py-1 rounded-full text-sm font-bold shadow-lg shadow-blue-500/30">Let's Build MVP 🚀</span>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

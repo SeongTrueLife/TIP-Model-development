@@ -1,27 +1,9 @@
-# Ignore everything initially
-*
-
-# Allow directories and files
-!*/
-!0.아이디어 기획서등등 정리 문서들/
-!0.아이디어 기획서등등 정리 문서들/**
-!model1/10000_test_processed_data/
-!model1/10000_test_processed_data/**
-!model1/check_bbox_result/
-!model1/check_bbox_result/**
-!model1/Model1_detection_segmentation_v1.0/
-!model1/Model1_detection_segmentation_v1.0/**
-!model1/model1_full/
-!model1/model1_full/**
-!model2/
-!model2/**
-!model3/
-!model3/**
-!model4/
-!model4/**
-!src/model5/
-!src/model5/**
-!.gitignore
+# Ignore specific files and folders
+**/.env
+**/.env.*
+!**/.env.example
+**/*.csv
+**/*.jsonl
 
 # Explicitly ignore ALL model files first (Safety net)
 **/*.pt
@@ -35,15 +17,8 @@
 
 # Allow specific small model files (Exceptions)
 !**/yolo/best.pt
-# !model2/visual_similarity_model/resnet50_triplet_final.pth # This one is 90MB (safe but close to limit)
 
 # Re-ignore virtual environment and unnecessary files specifically
-**/.env
-**/.env.*
-!**/.env.example
-**/*.csv
-**/*.jsonl
-
 **/.venv/
 **/__pycache__/
 **/*.py[cod]

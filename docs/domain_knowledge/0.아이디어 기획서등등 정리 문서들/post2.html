@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T-Guardian Project Proposal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Noto Sans KR', sans-serif; background-color: #0f172a; color: #e2e8f0; overflow: hidden; }
+        .slide { display: none; height: 100vh; width: 100vw; padding: 2rem; box-sizing: border-box; position: relative; }
+        .slide.active { display: flex; flex-direction: column; }
+        .slide-content { flex-grow: 1; display: flex; flex-direction: column; justify-content: center; max-width: 1280px; margin: 0 auto; width: 100%; }
+        .code-block { background-color: #1e293b; border-radius: 0.5rem; padding: 1.5rem; font-family: 'Fira Code', monospace; overflow-x: auto; border: 1px solid #334155; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
+        .highlight { color: #38bdf8; font-weight: bold; }
+        .accent { color: #f472b6; }
+        .comment { color: #94a3b8; font-style: italic; }
+        .nav-btn { position: absolute; bottom: 2rem; background: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: 0.25rem; cursor: pointer; transition: 0.3s; z-index: 10; }
+        .nav-btn:hover { background: rgba(255,255,255,0.2); }
+        .prev-btn { left: 2rem; }
+        .next-btn { right: 2rem; }
+        .page-indicator { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); color: #64748b; font-size: 0.875rem; }
+        h1 { font-weight: 900; letter-spacing: -0.05em; }
+        h2 { font-weight: 700; letter-spacing: -0.025em; margin-bottom: 1.5rem; border-left: 5px solid #38bdf8; padding-left: 1rem; }
+        ul { list-style-type: none; }
+        li { margin-bottom: 0.75rem; display: flex; align-items: start; }
+        li::before { content: "\f058"; font-family: "Font Awesome 6 Free"; font-weight: 900; color: #38bdf8; margin-right: 0.75rem; margin-top: 0.25rem; }
+        .card { background: #1e293b; padding: 1.5rem; border-radius: 0.75rem; border: 1px solid #334155; }
+    </style>
+</head>
+<body>
+
+    <!-- Slide 1: Title -->
+    <div class="slide active">
+        <div class="slide-content text-center">
+            <div class="mb-4 text-blue-400 font-bold tracking-widest uppercase">Project Proposal</div>
+            <h1 class="text-7xl mb-6 text-white">T-Guardian</h1>
+            <p class="text-3xl text-gray-400 mb-12 font-light">상표법 법리를 알고리즘화한<br><span class="text-white font-bold">지능형 침해 탐지 솔루션</span></p>
+            <div class="flex justify-center gap-8 text-gray-400">
+                <div><i class="fas fa-scale-balanced mr-2"></i>Legal-Tech</div>
+                <div><i class="fas fa-robot mr-2"></i>AI Vision & NLP</div>
+                <div><i class="fas fa-globe mr-2"></i>B2B SaaS</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: The Problem -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>01. 우리가 해결하려는 문제 (Pain Point)</h2>
+            <div class="grid grid-cols-2 gap-12 items-center">
+                <div>
+                    <p class="text-2xl mb-6 leading-relaxed">"변리사는 상표를 <span class="highlight">등록</span>해주지만,<br>등록 이후의 <span class="accent">침해 감시</span>는 방치됩니다."</p>
+                    <ul>
+                        <li class="text-xl">매년 상표 출원 폭증, 그러나 사후 관리는 전무</li>
+                        <li class="text-xl">오프라인(간판), 온라인(쇼핑몰), SNS 등 채널 파편화</li>
+                        <li class="text-xl">사람이 일일이 검색하는 것은 물리적으로 불가능</li>
+                    </ul>
+                </div>
+                <div class="card bg-red-900/20 border-red-500/30">
+                    <h3 class="text-xl font-bold text-red-400 mb-4"><i class="fas fa-triangle-exclamation mr-2"></i>Current Reality</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center p-3 bg-gray-800 rounded">
+                            <i class="fas fa-user-tie text-gray-500 w-8"></i>
+                            <span>변리사: "등록 업무만으로도 벅찹니다."</span>
+                        </div>
+                        <div class="flex items-center p-3 bg-gray-800 rounded">
+                            <i class="fas fa-store-slash text-gray-500 w-8"></i>
+                            <span>고객: "내 브랜드 짝퉁이 깔렸는데 몰랐어요."</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: The Solution -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>02. 솔루션: T-Guardian</h2>
+            <div class="text-center mb-10">
+                <p class="text-3xl font-bold">"24/365 중단 없는 상표 침해 자동 감시 시스템"</p>
+            </div>
+            <div class="grid grid-cols-3 gap-6">
+                <div class="card text-center">
+                    <i class="fas fa-eye text-5xl text-blue-400 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">자동화된 감시</h3>
+                    <p class="text-gray-400">지도, 쇼핑몰, SNS를<br>크롤링하여 데이터 수집</p>
+                </div>
+                <div class="card text-center">
+                    <i class="fas fa-brain text-5xl text-purple-400 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">법리적 AI 분석</h3>
+                    <p class="text-gray-400">단순 매칭이 아닌<br>호칭/외관/관념 3요소 분석</p>
+                </div>
+                <div class="card text-center">
+                    <i class="fas fa-file-contract text-5xl text-green-400 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">의사결정 지원</h3>
+                    <p class="text-gray-400">변리사를 위한<br>고도로 정제된 침해 리포트</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Target Market -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>03. 타겟 시장 및 고객</h2>
+            <div class="grid grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4 text-blue-400">Primary Target (B2B)</h3>
+                    <ul class="text-xl space-y-4">
+                        <li><strong>특허법인 / 변리사</strong><br><span class="text-gray-400 text-base">고객에게 "사후 관리"라는 프리미엄 서비스 제공</span></li>
+                        <li><strong>대기업 IP팀</strong><br><span class="text-gray-400 text-base">브랜드 보호 및 위조 상품 단속 자동화</span></li>
+                        <li><strong>프랜차이즈 본사</strong><br><span class="text-gray-400 text-base">가맹점 무단 간판 사용 및 짝퉁 매장 감시</span></li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-bold mb-4">시장 기회 (Blue Ocean)</h3>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center border-b border-gray-700 pb-2">
+                            <span>글로벌 브랜드 보호 시장</span>
+                            <span class="font-bold">2조 원+</span>
+                        </div>
+                        <div class="flex justify-between items-center border-b border-gray-700 pb-2">
+                            <span>국내 리걸테크 시장</span>
+                            <span class="font-bold">급성장 중</span>
+                        </div>
+                        <div class="mt-4 p-4 bg-blue-900/30 rounded text-center">
+                            "오프라인(지도) 침해 감시는<br>전 세계적으로도 <span class="text-blue-300 font-bold">First-mover</span>"
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Competitive Advantage -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>04. 경쟁 우위 (The Moat)</h2>
+            <table class="w-full text-left border-collapse">
+                <thead>
+                    <tr class="border-b-2 border-gray-600 text-gray-400">
+                        <th class="p-4">구분</th>
+                        <th class="p-4">글로벌 (Red Points 등)</th>
+                        <th class="p-4">국내 (KIPRIS 등)</th>
+                        <th class="p-4 text-blue-400">T-Guardian</th>
+                    </tr>
+                </thead>
+                <tbody class="text-lg">
+                    <tr class="border-b border-gray-800">
+                        <td class="p-4 font-bold">데이터 범위</td>
+                        <td class="p-4">온라인 (아마존, 이베이)</td>
+                        <td class="p-4">등록 데이터 (공보)</td>
+                        <td class="p-4 text-blue-300 font-bold">온라인 + 오프라인(지도)</td>
+                    </tr>
+                    <tr class="border-b border-gray-800">
+                        <td class="p-4 font-bold">한글 특화</td>
+                        <td class="p-4 text-red-400">취약 (영어 중심)</td>
+                        <td class="p-4">가능</td>
+                        <td class="p-4 text-blue-300 font-bold">최적화 (음운 변동 반영)</td>
+                    </tr>
+                    <tr class="border-b border-gray-800">
+                        <td class="p-4 font-bold">분석 깊이</td>
+                        <td class="p-4">이미지/텍스트 매칭</td>
+                        <td class="p-4">단순 키워드 검색</td>
+                        <td class="p-4 text-blue-300 font-bold">법리적 3요소 (호칭/외관/관념)</td>
+                    </tr>
+                    <tr>
+                        <td class="p-4 font-bold">역할</td>
+                        <td class="p-4">자동 차단 도구</td>
+                        <td class="p-4">검색 도구</td>
+                        <td class="p-4 text-blue-300 font-bold">변리사 의사결정 지원 (DSS)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Slide 6: The Pivot (Evolution) -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>05. 기획의 진화 (The Pivot)</h2>
+            <p class="text-xl mb-8">초기의 추상적인 아이디어에서 현실적인 엔지니어링 설계로 발전했습니다.</p>
+            <div class="flex items-center justify-between">
+                <div class="card w-1/3 opacity-50">
+                    <h3 class="text-lg font-bold mb-2">v1.0 (Initial)</h3>
+                    <p class="text-sm text-gray-400">"AI로 다 분석하자"</p>
+                    <ul class="text-sm mt-4 space-y-2">
+                        <li>❌ 무작위 대량 크롤링</li>
+                        <li>❌ 거대 모델 하나로 해결</li>
+                        <li>❌ 데이터 비용 고려 부족</li>
+                    </ul>
+                </div>
+                <div class="text-4xl text-blue-500"><i class="fas fa-arrow-right"></i></div>
+                <div class="card w-1/3 border-blue-500 bg-blue-900/10">
+                    <h3 class="text-lg font-bold mb-2 text-blue-400">v3.0 (Final)</h3>
+                    <p class="text-sm text-gray-300">"법리적 분해 & 효율화"</p>
+                    <ul class="text-sm mt-4 space-y-2">
+                        <li>✅ 3단계 깔때기 구조 (비용 절감)</li>
+                        <li>✅ 3-Track 독립 앙상블 모델</li>
+                        <li>✅ 공공데이터 + 핀포인트 크롤링</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7: System Architecture Overview -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>06. 시스템 아키텍처 (Overview)</h2>
+            <div class="grid grid-cols-4 gap-4 text-center">
+                <div class="p-4 bg-gray-800 rounded border border-gray-600">
+                    <div class="font-bold text-blue-400 mb-2">Data Collection</div>
+                    <div class="text-sm">공공데이터 API<br>네이버 지도 크롤링<br>SNS / 쇼핑몰</div>
+                </div>
+                <div class="p-4 bg-gray-800 rounded border border-gray-600">
+                    <div class="font-bold text-green-400 mb-2">Preprocessing</div>
+                    <div class="text-sm">Nice 분류 매핑<br>중복 제거<br>OCR 텍스트 추출</div>
+                </div>
+                <div class="p-4 bg-gray-800 rounded border border-gray-600">
+                    <div class="font-bold text-purple-400 mb-2">AI Analysis</div>
+                    <div class="text-sm">Track 1: 호칭<br>Track 2: 외관<br>Track 3: 관념</div>
+                </div>
+                <div class="p-4 bg-gray-800 rounded border border-gray-600">
+                    <div class="font-bold text-red-400 mb-2">Decision & Report</div>
+                    <div class="text-sm">위험도 판정<br>RAG 법리 생성<br>변리사 대시보드</div>
+                </div>
+            </div>
+            <div class="mt-8 text-center">
+                <i class="fas fa-arrow-down text-gray-500 mb-2"></i>
+                <p class="text-lg">"비용 효율성과 정확도를 동시에 잡는 <span class="text-blue-400 font-bold">3단계 깔때기(Funnel)</span> 구조"</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: Data Collection Strategy -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>07. 데이터 수집: 하이브리드 전략</h2>
+            <div class="grid grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Layer 1: 공공데이터 (Base)</h3>
+                    <ul class="space-y-3">
+                        <li><i class="fas fa-database"></i><strong>KIPRIS API:</strong> 등록 상표 (Ground Truth)</li>
+                        <li><i class="fas fa-building"></i><strong>인허가 데이터:</strong> 신규 개업 업체 리스트</li>
+                        <li><span class="text-green-400">→ 합법적이고 안정적인 데이터 확보</span></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Layer 2: 크롤링 (Target)</h3>
+                    <ul class="space-y-3">
+                        <li><i class="fas fa-map-marked-alt"></i><strong>네이버/카카오 지도:</strong> 간판, 로드뷰</li>
+                        <li><i class="fas fa-shopping-bag"></i><strong>쿠팡/스마트스토어:</strong> 상품 이미지</li>
+                        <li><span class="text-red-400">→ 핀포인트 수집으로 차단 리스크 최소화</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-6 code-block">
+<pre><code># 크롤링 리스크 관리 전략
+def crawl_strategy(target):
+    if target in public_data_db:
+        return "Skip (Already have info)"
+    else:
+        use_proxy_rotation()
+        return selenium_crawl(target)</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 9: Nice Classification Mapping -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>08. 핵심 필터링: Nice 분류 매핑</h2>
+            <p class="text-xl mb-6">"상표권은 지정상품(류)에만 미칩니다. 엉뚱한 업종은 분석할 필요가 없습니다."</p>
+            <div class="flex justify-center items-center gap-8">
+                <div class="card bg-gray-800 p-6">
+                    <div class="text-gray-400 text-sm">수집 데이터 (네이버)</div>
+                    <div class="text-2xl font-bold mt-2">스타벅스</div>
+                    <div class="text-blue-400">업종: 카페 (KSIC I56)</div>
+                </div>
+                <div class="text-3xl"><i class="fas fa-exchange-alt"></i></div>
+                <div class="card bg-gray-800 p-6">
+                    <div class="text-gray-400 text-sm">등록 상표 (특허청)</div>
+                    <div class="text-2xl font-bold mt-2">STARBUCKS</div>
+                    <div class="text-green-400">분류: 제43류 (식음료)</div>
+                </div>
+            </div>
+            <div class="mt-8 text-center p-4 bg-blue-900/20 rounded border border-blue-500/30">
+                <p class="text-lg"><strong>Effect:</strong> 불필요한 AI 연산 <span class="text-red-400 font-bold">90% 제거</span> (비용 절감의 핵심)</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 10: 3-Track AI Model Overview -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>09. 3-Track AI 분석 엔진</h2>
+            <p class="mb-8 text-lg">한국 상표법의 판단 기준(호칭, 외관, 관념)을 독립적인 모델로 구현했습니다.</p>
+            <div class="grid grid-cols-3 gap-6 h-96">
+                <div class="card flex flex-col justify-between border-t-4 border-blue-500">
+                    <div>
+                        <h3 class="text-xl font-bold mb-2">Track 1: 호칭</h3>
+                        <p class="text-sm text-gray-400">Phonetic Similarity</p>
+                    </div>
+                    <div class="text-center text-4xl my-4"><i class="fas fa-ear-listen"></i></div>
+                    <div class="text-sm bg-gray-800 p-2 rounded">
+                        "스타벅스" vs "스타박스"<br>
+                        <span class="text-blue-400">유사도 85%</span>
+                    </div>
+                </div>
+                <div class="card flex flex-col justify-between border-t-4 border-green-500">
+                    <div>
+                        <h3 class="text-xl font-bold mb-2">Track 2: 외관</h3>
+                        <p class="text-sm text-gray-400">Visual Similarity</p>
+                    </div>
+                    <div class="text-center text-4xl my-4"><i class="fas fa-image"></i></div>
+                    <div class="text-sm bg-gray-800 p-2 rounded">
+                        로고 형태 / 색상 분석<br>
+                        <span class="text-green-400">유사도 40%</span>
+                    </div>
+                </div>
+                <div class="card flex flex-col justify-between border-t-4 border-purple-500">
+                    <div>
+                        <h3 class="text-xl font-bold mb-2">Track 3: 관념</h3>
+                        <p class="text-sm text-gray-400">Conceptual Similarity</p>
+                    </div>
+                    <div class="text-center text-4xl my-4"><i class="fas fa-lightbulb"></i></div>
+                    <div class="text-sm bg-gray-800 p-2 rounded">
+                        "Lion" vs "사자"<br>
+                        <span class="text-purple-400">유사도 98%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 11: Track 1 Detail -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>10. Track 1: 호칭 유사도 (The Phonetic)</h2>
+            <div class="grid grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">핵심 기술: G2P + 알고리즘</h3>
+                    <ul class="space-y-4">
+                        <li><strong>문제:</strong> 딥러닝은 과유불급. 한국어 음운 규칙은 명확함.</li>
+                        <li><strong>해결:</strong> KoG2P (Grapheme-to-Phoneme) 변환</li>
+                        <li><strong>알고리즘:</strong> Levenshtein Distance (편집 거리)</li>
+                    </ul>
+                </div>
+                <div class="code-block">
+<pre><code># 호칭 분석 로직 예시
+text_a = "국물" -> G2P -> "궁물"
+text_b = "궁물" -> G2P -> "궁물"
+
+distance = levenshtein("궁물", "궁물")
+similarity = 1 - (distance / max_len)
+# Result: 100% Match</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 12: Track 2 Detail -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>11. Track 2: 외관 유사도 (The Visual)</h2>
+            <div class="grid grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">핵심 기술: Metric Learning</h3>
+                    <ul class="space-y-4">
+                        <li><strong>문제:</strong> 단순 분류(Classification)가 아님. "얼마나 비슷한가?"를 측정해야 함.</li>
+                        <li><strong>해결:</strong> Siamese Network (샴 네트워크)</li>
+                        <li><strong>Loss Function:</strong> Triplet Loss (Anchor, Positive, Negative)</li>
+                        <li><strong>데이터:</strong> AI Hub 한국 상표 데이터 활용</li>
+                    </ul>
+                </div>
+                <div class="flex flex-col justify-center items-center bg-gray-800 rounded p-4">
+                    <div class="flex gap-4 mb-4">
+                        <div class="w-24 h-24 bg-green-700 rounded-full flex items-center justify-center">Original</div>
+                        <div class="w-24 h-24 bg-green-600 rounded-full flex items-center justify-center border-4 border-red-500">Fake</div>
+                    </div>
+                    <p class="text-sm text-gray-400">벡터 공간 상의 거리(Distance) 계산</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 13: Track 3 Detail -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>12. Track 3: 관념 유사도 (The Conceptual)</h2>
+            <div class="grid grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">핵심 기술: LLM Embedding</h3>
+                    <ul class="space-y-4">
+                        <li><strong>문제:</strong> "Apple"과 "사과"는 글자가 다르지만 뜻은 같음.</li>
+                        <li><strong>해결:</strong> 거대 언어 모델(LLM)의 의미 공간(Semantic Space) 활용</li>
+                        <li><strong>API:</strong> OpenAI text-embedding-3-small 또는 Solar</li>
+                    </ul>
+                </div>
+                <div class="code-block">
+<pre><code># 관념 분석 로직
+vec_a = openai.Embedding.create("Apple")
+vec_b = openai.Embedding.create("사과")
+
+score = cosine_similarity(vec_a, vec_b)
+# Result: 0.92 (High Similarity)</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 14: Decision Engine -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>13. Decision Engine: 침해 판정 로직</h2>
+            <p class="text-xl mb-6">"어느 하나만 유사해도 오인·혼동을 일으키면 침해입니다." (대법원 판례)</p>
+            <div class="card bg-gray-800 p-8">
+                <h3 class="text-lg font-bold text-blue-400 mb-4">Weighted Max-Pooling Strategy</h3>
+                <div class="code-block bg-black">
+<pre><code>final_score = max(
+    w_p * phonetic_score,  # 호칭 (가중치 0.4)
+    w_v * visual_score,    # 외관 (가중치 0.35)
+    w_c * conceptual_score # 관념 (가중치 0.25)
+)
+
+if final_score >= 80:
+    return "HIGH_RISK" (🔴)
+elif final_score >= 50:
+    return "MEDIUM_RISK" (🟡)
+else:
+    return "LOW_RISK" (🟢)</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 15: RAG & Report -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>14. RAG 기반 리포트 생성</h2>
+            <p class="text-xl mb-6">"AI는 판사가 아닙니다. 데이터 해설사입니다."</p>
+            <div class="grid grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Hallucination 방지 전략</h3>
+                    <ul class="space-y-3">
+                        <li>✅ <strong>JSON Only:</strong> LLM에게 수치 데이터만 제공</li>
+                        <li>✅ <strong>Citation:</strong> 관련 판례 번호 강제 인용</li>
+                        <li>✅ <strong>Role:</strong> "보조원"으로 역할 한정</li>
+                    </ul>
+                </div>
+                <div class="card bg-gray-700 text-sm p-4 font-mono">
+                    <div class="text-gray-400 mb-2">[Generated Report]</div>
+                    <p>1. 호칭 분석: 두 상표는 유사도 85%로 매우 높습니다.</p>
+                    <p>2. 법적 근거: 대법원 2000후1234 판례에 의거...</p>
+                    <p class="text-yellow-400 mt-2">[⚠️ 변리사 최종 검토 필수]</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 16: Data Strategy (AI Hub) -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>15. 데이터 확보 전략: 한국형 데이터</h2>
+            <p class="text-xl mb-6">"해외 데이터셋은 한글을 모릅니다. 우리는 AI Hub를 씁니다."</p>
+            <div class="grid grid-cols-3 gap-6">
+                <div class="card">
+                    <div class="text-blue-400 font-bold mb-2">AI Hub (Main)</div>
+                    <h3 class="text-lg font-bold">유사 상표 이미지 데이터</h3>
+                    <p class="text-sm text-gray-400 mt-2">27만 건 (한국 상표)<br>실제 사용자 업로드 기반<br>현장 노이즈 포함</p>
+                </div>
+                <div class="card">
+                    <div class="text-green-400 font-bold mb-2">AI Hub (OCR)</div>
+                    <h3 class="text-lg font-bold">야외 실제 촬영 한글</h3>
+                    <p class="text-sm text-gray-400 mt-2">수십만 장<br>간판, 현수막 특화<br>한글 인식률 극대화</p>
+                </div>
+                <div class="card">
+                    <div class="text-purple-400 font-bold mb-2">Synthetic</div>
+                    <div class="text-lg font-bold">합성 데이터</div>
+                    <p class="text-sm text-gray-400 mt-2">Style Transfer 활용<br>깨끗한 로고 + 간판 배경<br>Data Augmentation</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 17: MVP Strategy Intro -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>16. MVP 전략: 선택과 집중</h2>
+            <div class="text-center mb-10">
+                <p class="text-3xl font-bold text-red-400">"모든 것을 한 번에 만들지 않습니다."</p>
+            </div>
+            <div class="flex justify-center items-center gap-12">
+                <div class="opacity-40 text-center">
+                    <div class="text-2xl mb-2">Full Spec</div>
+                    <div class="card p-4">모델 3개 + RAG + 앱</div>
+                    <div class="mt-2">6개월 소요 🐢</div>
+                </div>
+                <div class="text-4xl"><i class="fas fa-angle-right"></i></div>
+                <div class="text-center transform scale-110">
+                    <div class="text-2xl mb-2 font-bold text-blue-400">2-Week MVP</div>
+                    <div class="card p-4 border-2 border-blue-500">
+                        <span class="text-green-400 font-bold">크롤링</span> + 
+                        <span class="text-purple-400 font-bold">Vision 모델</span>
+                    </div>
+                    <div class="mt-2 font-bold text-blue-400">2주 완성 🚀</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 18: MVP Roadmap -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>17. 2주 MVP 개발 로드맵</h2>
+            <div class="space-y-6">
+                <div class="flex">
+                    <div class="w-24 font-bold text-blue-400">Day 1-3</div>
+                    <div class="flex-1 ml-4 border-l-2 border-gray-700 pl-4">
+                        <h3 class="font-bold">데이터 & 크롤링 프로토타입</h3>
+                        <p class="text-sm text-gray-400">AI Hub 데이터 다운로드, 네이버 지도 크롤러(Selenium) 구현</p>
+                    </div>
+                </div>
+                <div class="flex">
+                    <div class="w-24 font-bold text-green-400">Day 4-5</div>
+                    <div class="flex-1 ml-4 border-l-2 border-gray-700 pl-4">
+                        <h3 class="font-bold">Vision 모델 학습</h3>
+                        <p class="text-sm text-gray-400">YOLOv8 로고 탐지 학습 (정확도 85% 목표)</p>
+                    </div>
+                </div>
+                <div class="flex">
+                    <div class="w-24 font-bold text-purple-400">Day 6-7</div>
+                    <div class="flex-1 ml-4 border-l-2 border-gray-700 pl-4">
+                        <h3 class="font-bold">웹 대시보드 & 통합</h3>
+                        <p class="text-sm text-gray-400">React UI, "크롤링 시작" 버튼 연동, 결과 시각화</p>
+                    </div>
+                </div>
+                <div class="flex">
+                    <div class="w-24 font-bold text-red-400">Day 8-10</div>
+                    <div class="flex-1 ml-4 border-l-2 border-gray-700 pl-4">
+                        <h3 class="font-bold">테스트 & 데모</h3>
+                        <p class="text-sm text-gray-400">End-to-End 테스트, 데모 영상 제작</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 19: Tech Stack -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>18. 기술 스택 (Tech Stack)</h2>
+            <div class="grid grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-lg font-bold mb-2 text-blue-400">Core AI</h3>
+                    <ul class="mb-4">
+                        <li><i class="fab fa-python mr-2"></i>Python 3.10+</li>
+                        <li><i class="fas fa-brain mr-2"></i>PyTorch, YOLOv8</li>
+                        <li><i class="fas fa-language mr-2"></i>KoG2P, OpenAI API</li>
+                    </ul>
+                    <h3 class="text-lg font-bold mb-2 text-green-400">Data & Crawling</h3>
+                    <ul>
+                        <li><i class="fas fa-spider mr-2"></i>Selenium, Playwright</li>
+                        <li><i class="fas fa-database mr-2"></i>PostgreSQL, Pinecone</li>
+                        <li><i class="fas fa-server mr-2"></i>Airflow, Redis</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-2 text-purple-400">Service</h3>
+                    <ul class="mb-4">
+                        <li><i class="fas fa-bolt mr-2"></i>FastAPI (Backend)</li>
+                        <li><i class="fab fa-react mr-2"></i>React, Tailwind (Frontend)</li>
+                        <li><i class="fab fa-docker mr-2"></i>Docker (Deployment)</li>
+                    </ul>
+                    <div class="p-4 bg-gray-800 rounded mt-4 text-center">
+                        <p class="text-sm">"검증된 오픈소스와 최신 AI 기술의 조화"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 20: Conclusion & Vision -->
+    <div class="slide">
+        <div class="slide-content text-center">
+            <h2 class="border-none mb-8">19. 우리의 비전</h2>
+            <p class="text-4xl font-bold mb-12 leading-normal">"세상의 모든 상표 침해를<br>찾아내는 시스템"</p>
+            <div class="grid grid-cols-3 gap-8 text-left max-w-4xl mx-auto">
+                <div>
+                    <h3 class="text-xl font-bold text-blue-400 mb-2">For 변리사</h3>
+                    <p>단순 반복 업무 해방<br>고부가가치 판단 집중</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-green-400 mb-2">For 기업</h3>
+                    <p>브랜드 가치 보호<br>매출 손실 방지</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-purple-400 mb-2">For 시장</h3>
+                    <p>공정한 경쟁 질서 확립<br>지식재산권 보호 강화</p>
+                </div>
+            </div>
+            <div class="mt-16">
+                <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-full text-xl transition duration-300">
+                    프로젝트 시작하기
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Controls -->
+    <div class="nav-btn prev-btn" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></div>
+    <div class="nav-btn next-btn" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></div>
+    <div class="page-indicator" id="pageIndicator">1 / 20</div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const indicator = document.getElementById('pageIndicator');
+
+        function changeSlide(direction) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide += direction;
+
+            if (currentSlide < 0) currentSlide = 0;
+            if (currentSlide >= slides.length) currentSlide = slides.length - 1;
+
+            slides[currentSlide].classList.add('active');
+            updateIndicator();
+        }
+
+        function updateIndicator() {
+            indicator.innerText = `${currentSlide + 1} / ${slides.length}`;
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'ArrowRight') changeSlide(1);
+            if (event.key === 'ArrowLeft') changeSlide(-1);
+        });
+    </script>
+</body>
+</html>

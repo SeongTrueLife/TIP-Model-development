@@ -1,0 +1,17 @@
+유사 상표 탐지 모델 중 비전모델에 사용가능한 데이터셋 
+
+1. 상표 이미지 및 텍스트
+
+https://aihub.or.kr/aihubdata/data/view.do?pageIndex=1&currMenu=115&topMenu=100&srchOptnCnd=OPTNCND001&searchKeyword=%EC%83%81%ED%91%9C&srchDetailCnd=DETAILCND001&srchOrder=ORDER001&srchPagePer=20&aihubDataSe=data&dataSetSn=63
+
+2. 유사 상표 이미지 검색 서비스의 사용자 입력 이미지 데이터
+https://aihub.or.kr/aihubdata/data/view.do?pageIndex=1&currMenu=115&topMenu=100&srchOptnCnd=OPTNCND001&searchKeyword=%EC%83%81%ED%91%9C&srchDetailCnd=DETAILCND001&srchOrder=ORDER001&srchPagePer=20&aihubDataSe=data&dataSetSn=71285
+
+3.유사 상표 이미지 검색 서비스의 사용자 입력 이미지 데이터 (2023)
+https://aihub.or.kr/aihubdata/data/view.do?pageIndex=1&currMenu=115&topMenu=100&srchOptnCnd=OPTNCND001&searchKeyword=%EC%83%81%ED%91%9C&srchDetailCnd=DETAILCND001&srchOrder=ORDER001&srchPagePer=20&aihubDataSe=data&dataSetSn=71764
+
+4.IP산업의 상표권 보호를 위한 오프라인 상표 이미지 데이터
+https://aihub.or.kr/aihubdata/data/view.do?pageIndex=1&currMenu=115&topMenu=100&srchOptnCnd=OPTNCND001&searchKeyword=%EC%83%81%ED%91%9C&srchDetailCnd=DETAILCND001&srchOrder=ORDER001&srchPagePer=20&aihubDataSe=data&dataSetSn=71298
+
+5. 야외 실제 촬영 한글 이미지(ocr 모델에서)
+https://aihub.or.kr/aihubdata/data/view.do?pageIndex=1&currMenu=115&topMenu=100&srchOptnCnd=OPTNCND001&searchKeyword=%EC%95%BC%EC%99%B8&srchDetailCnd=DETAILCND001&srchOrder=ORDER001&srchPagePer=20&aihubDataSe=data&dataSetSn=105
