@@ -1,0 +1,20 @@
+{
+    "High": {
+        "Accuracy": 0.72,
+        "Precision": 0.7436,
+        "Recall": 0.4754,
+        "F1-Score": 0.58
+    },
+    "Medium+": {
+        "Accuracy": 0.7867,
+        "Precision": 0.7377,
+        "Recall": 0.7377,
+        "F1-Score": 0.7377
+    },
+    "Low+": {
+        "Accuracy": 0.8067,
+        "Precision": 0.7,
+        "Recall": 0.918,
+        "F1-Score": 0.7943
+    }
+}

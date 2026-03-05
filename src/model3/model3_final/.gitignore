@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Backup files (exclude from git, but include in distribution zip)
+# backup_*.zip
+
+# Data files (optional - 팀원과 공유 시 주석 처리)
+# data/analysis_log.xlsx
+# data/report.xlsx
